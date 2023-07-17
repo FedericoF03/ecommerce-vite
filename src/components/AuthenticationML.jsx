@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { redirect } from "../utils/redirect";
 import { useEffect } from "react";
 
-export const Authentication = () => {
+const AuthenticationML = () => {
   const query = useLocation().search;
 
   useEffect(() => {
@@ -12,7 +12,9 @@ export const Authentication = () => {
   
   return (
     <>
-      <button onClick={() => redirect()}>test red</button>
+      <button onClick={() => redirect()}>test ml</button>
     </>
   );
 };
+
+export default AuthenticationML
