@@ -1,15 +1,15 @@
+import HTTPConfig from "./HTTPConfig";
+
 export const redirect = async (query = "") => {
-  const HTTPConfig = {
-    url: `http://localhost:3005/auth/authorization${query}`,
-    body: {
-      credentials: "include",
-    },
-  };
   try {
-    const getAuthURL = await fetch(HTTPConfig.url, HTTPConfig.body);
-    const AuthURL = await getAuthURL.json();
-    if(getAuthURL.status == 200) location.href = AuthURL;
+    const HTTP = HTTPConfig(query);
+
+    const getAuthURL = await fetch(HTTP.URL, HTTP.body);
+    console.log(getAuthURL)
+    if(getAuthURL.status > 300) throw new Error("server error, wait")
+    const  AuthURL = await getAuthURL.json();
+    location.href = AuthURL.url;
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 };
